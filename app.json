@@ -19,10 +19,21 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.ViajaAI"
+      "package": "com.dalgonafox.ViajaAI"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "bundler": "metro",
+      "favicon": "./assets/favicon.png",
+      "env": {
+        "GEMINI_API_KEY": "AIzaSyDyEDmHxiph25rNyeR7aQL8YBRVAS362jo"
+       },
+         "build": {
+          "babel": {
+            "include": [
+              "node_modules"
+            ]
+            }
+           }
     },
     "extra": {
       "eas": {

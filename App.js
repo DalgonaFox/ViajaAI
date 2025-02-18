@@ -1,13 +1,20 @@
 import { useState } from 'react';
 import {
   StyleSheet, Text, View, StatusBar, TextInput, Platform, Pressable, ScrollView,
-  ActivityIndicator, Alert, Keyboard
+  ActivityIndicator, Alert, Keyboard, ImageBackground
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import Slider from '@react-native-community/slider';
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+const backgroundImage = require('./assets/image.png');
+
 
 const statusBarHeight = StatusBar.currentHeight;
-const KEY_GPT = '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';
+const KEY_GEMINI = ("AIzaSyDyEDmHxiph25rNyeR7aQL8YBRVAS362jo");
+
+const genAI = new GoogleGenerativeAI(KEY_GEMINI);
+const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 export default function App() {
 
@@ -15,6 +22,17 @@ export default function App() {
   const [days, setDays] = useState(3);
   const [loading, setLoading] = useState(false);
   const [travel, setTravel] = useState("")
+
+  async function generateTextWithGemini(prompt) {
+    try {
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      return response.text();
+    } catch (error) {
+      console.error("Error generating text with Gemini:", error);
+      return "An error occurred.";
+    }
+  }
 
   async function handleGenerate() {
     if (city === "") {
@@ -28,40 +46,18 @@ export default function App() {
 
     const prompt = `Crie um roteiro para uma viagem de exatos ${days.toFixed(0)} dias na cidade de ${city}, busque por lugares turisticos, lugares mais visitados, seja preciso nos dias de estadia fornecidos e limite o roteiro apenas na cidade fornecida. Forneça apenas em tópicos com nome do local onde ir em cada dia.`
 
-    fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${KEY_GPT}`
-      },
-      body: JSON.stringify({
-        model: "gpt-3.5-turbo",
-        messages: [
-          {
-            role: 'user',
-            content: prompt
-          }
-        ],
-        temperature: 0.20,
-        max_tokens: 500,
-        top_p: 1,
-      })
-    })
-      .then(response => response.json())
-      .then((data) => {
-        console.log(data.choices[0].message.content);
-        setTravel(data.choices[0].message.content)
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      })
+    const generatedText = await generateTextWithGemini(prompt);
+    setTravel(generatedText)
+    setLoading(false);
 
   }
 
   return (
+    <ImageBackground
+          source={backgroundImage}
+          style={styles.backgroundImage}
+      >
+      <StatusBar barStyle="dark-content" translucent={true} backgroundColor="#09edc3" />
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" translucent={true} backgroundColor="#F1F1F1" />
       <Text style={styles.heading}>Viaja AI</Text>
@@ -70,6 +66,7 @@ export default function App() {
         <Text style={styles.label}>Cidade destino</Text>
         <TextInput
           placeholder="Ex: Suzano, SP"
+          placeholderTextColor="#808080"
           style={styles.input}
           value={city}
           onChangeText={(text) => setCity(text)}
@@ -108,19 +105,20 @@ export default function App() {
       </ScrollView>
 
     </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f1f1f1',
     alignItems: 'center',
     paddingTop: 20,
   },
   heading: {
-    fontSize: 32,
+    fontSize: 40,
     fontWeight: 'bold',
+    color: '#fff',
     paddingTop: Platform.OS === 'android' ? statusBarHeight : 54
   },
   form: {
@@ -144,11 +142,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 16,
   },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'contain'
+  },
   days: {
     backgroundColor: '#F1f1f1'
   },
   button: {
-    backgroundColor: '#FF5656',
+    backgroundColor: '#005db6',
     width: '90%',
     borderRadius: 8,
     flexDirection: 'row',
