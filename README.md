@@ -18,7 +18,7 @@ Antes de rodar o projeto, certifique-se de ter instalado:
 
 ### Clonando o Repositório
 Use os seguintes comandos no Git Bash, já dentro da pasta onde você deseja clonar o projeto:
-> git clone https://github.com/DalgonaFox/SweetCycle.git
+> git clone https://github.com/DalgonaFox/ViajaAI.git
 
 ### Instalando Dependências
 Abra seu editor de código e abra a pasta onde o projeto está.
