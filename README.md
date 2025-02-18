@@ -2,6 +2,7 @@
 
 ## Sobre o Projeto
 É uma aplicação mobile que retorna um roteiro de viagem com pontos turísticos para o usuário com base no local de destino e a quantidade de dias.
+Você pode acessar o projeto no ar [aqui!](https://viajaai.onrender.com/)
 > Este projeto foi criado como um exercício durante as aulas no curso Técnico em Desenvolvimento de Sistemas no SENAI. Anteriormente, foi utilizada uma API do ChatGPT, mas como ela foi desativada eu subtituí por uma do GEMINI que é gratuita, e fui personalizando a aplicação conforme desejado.
 
 ## Funcionalidades
