@@ -1,7 +1,7 @@
 # ViajaAI
 
 ## Sobre o Projeto
-Uma aplicação mobile que retorna um roteiro de viagem para o usuário com base no local de destino e a quantidade de dias.
+É uma aplicação mobile que retorna um roteiro de viagem com pontos turísticos para o usuário com base no local de destino e a quantidade de dias.
 > Este projeto foi criado como um exercício durante as aulas no curso Técnico em Desenvolvimento de Sistemas no SENAI. Anteriormente, foi utilizada uma API do ChatGPT, mas como ela foi desativada eu subtituí por uma do GEMINI que é gratuita, e fui personalizando a aplicação conforme desejado.
 
 ## Funcionalidades
@@ -9,6 +9,7 @@ Uma aplicação mobile que retorna um roteiro de viagem para o usuário com base
 
 ## Requisitos
 Antes de rodar o projeto, certifique-se de ter instalado:
+- Git Bash;
 - Algum editor de código (Recomendo o Visual Studio Code);
 - Expo Go v50(em seu celular).
 
@@ -21,7 +22,7 @@ Use os seguintes comandos no Git Bash, já dentro da pasta onde você deseja clo
 ### Instalando Dependências
 Abra seu editor de código e abra a pasta onde o projeto está.
 - Use o comando a seguir no seu terminal (Pode ser tanto pelo editor de código como pelo prompt de comando):
-> npm install react react-native @google/generative-ai @react-native-community/slider @expo/vector-icons
+> npm install react react-native @google/generative-ai @react-native-community/slider @expo/vector-icons react-native-markdown-display
 
 ### Rodando o Projeto
 No terminal, use o comando a seguir (certifique-se de estar dentro da pasta do projeto):

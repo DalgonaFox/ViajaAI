@@ -6,6 +6,7 @@ import {
 import { MaterialIcons } from '@expo/vector-icons';
 import Slider from '@react-native-community/slider';
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import Markdown from 'react-native-markdown-display';
 
 const backgroundImage = require('./assets/image.png');
 
@@ -44,7 +45,7 @@ export default function App() {
     setLoading(true);
     Keyboard.dismiss();
 
-    const prompt = `Crie um roteiro para uma viagem de exatos ${days.toFixed(0)} dias na cidade de ${city}, busque por lugares turisticos, lugares mais visitados, seja preciso nos dias de estadia fornecidos e limite o roteiro apenas na cidade fornecida. Forneça apenas em tópicos com nome do local onde ir em cada dia.`
+    const prompt = `Crie um roteiro para uma viagem de exatos ${days.toFixed(0)} dias na cidade de ${city}, busque por lugares turisticos, lugares mais visitados, seja preciso nos dias de estadia fornecidos e limite o roteiro apenas na cidade fornecida. Forneça apenas em tópicos com nome do local onde ir em cada dia. Indique mais informações que achar relevantes, e insira descrições detalhadas e informações sobre como ir ao local. Não tente formatar seu texto com h1 ou pontos e asteriscos, deixe o texto normal.`
 
     const generatedText = await generateTextWithGemini(prompt);
     setTravel(generatedText)
@@ -65,7 +66,7 @@ export default function App() {
       <View style={styles.form}>
         <Text style={styles.label}>Cidade destino</Text>
         <TextInput
-          placeholder="Ex: Suzano, SP"
+          placeholder="Ex: Paris, França"
           placeholderTextColor="#808080"
           style={styles.input}
           value={city}
@@ -99,7 +100,7 @@ export default function App() {
         {travel && (
           <View style={styles.content}>
             <Text style={styles.title}>Roteiro da viagem 👇</Text>
-            <Text style={{ lineHeight: 24, }}>{travel}</Text>
+            <Markdown>{travel}</Markdown>
           </View>
         )}
       </ScrollView>
