@@ -1,4 +1,10 @@
-# ViajaAI
+<h1 align="center"> ViajaAI </h1>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React Native" />
+  <img src="https://img.shields.io/badge/Expo-000000?style=for-the-badge&logo=expo&logoColor=white" alt="Expo" />
+  <img src="https://img.shields.io/badge/Gemini_API-8E75B2?style=for-the-badge&logo=googlegemini&logoColor=white" alt="Gemini API" />
+</p>
 
 ## Sobre o Projeto
 É uma aplicação web que retorna um roteiro de viagem com pontos turísticos para o usuário com base no local de destino e a quantidade de dias.
