@@ -12,10 +12,10 @@ const backgroundImage = require('./assets/image.png');
 
 
 const statusBarHeight = StatusBar.currentHeight;
-const KEY_GEMINI = ("AIzaSyBkMZKHxtLJSu_AN9EETHZPas32sNXpoZ0");
+const KEY_GEMINI = process.env.EXPO_PUBLIC_GEMINI_API_KEY;
 
 const genAI = new GoogleGenerativeAI(KEY_GEMINI);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+const model = genAI.getGenerativeModel({ model: "gemini-3.5-flash" });
 
 export default function App() {
 
